@@ -1,6 +1,6 @@
 # spring-reactive-mongo
 
-sample data<br>
+Sample Data<br><br><br>
 {
     "id": "AMD-20220531",
     "symbol": "AMD",
@@ -10,7 +10,7 @@ sample data<br>
     "low": 99.55,
     "close": 102.22,
     "volume": 99125703
-}<br>
+}<br><br>
 {
     "id": "NVDA-20220531",
     "symbol": "NVDA",
