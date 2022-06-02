@@ -1,6 +1,6 @@
 # spring-reactive-mongo
 
-
+sample data<br>
 {
     "id": "AMD-20220531",
     "symbol": "AMD",
