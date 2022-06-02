@@ -1,6 +1,6 @@
 # spring-reactive-mongo
 
-It provides standard RESTFul APIs to add, update, delete, retrieve quote.
+It provides standard RESTFul APIs to add, update, delete, and get quote.
 <br>
 <br>
 Sample Data<br><br>
