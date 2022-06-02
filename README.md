@@ -10,7 +10,7 @@
     "low": 99.55,
     "close": 102.22,
     "volume": 99125703
-}
+}<br>
 {
     "id": "NVDA-20220531",
     "symbol": "NVDA",
