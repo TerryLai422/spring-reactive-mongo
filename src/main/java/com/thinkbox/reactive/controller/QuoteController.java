@@ -23,9 +23,14 @@ public class QuoteController {
       return service.getQuotes();
     }
 
-    @GetMapping("/{symbol}")
-    public Mono<QuoteDto> getQuote(@PathVariable String symbol){
-        return service.getQuote(symbol);
+    @GetMapping(path="/symbol/{symbol}", produces=MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Flux<QuoteDto> getQuotesBySymbol(@PathVariable String symbol){
+      return service.getQuotesBySymbol(symbol);
+    }
+    
+    @GetMapping("/{id}")
+    public Mono<QuoteDto> getQuote(@PathVariable String id){
+        return service.getQuote(id);
     }
 
     @PostMapping

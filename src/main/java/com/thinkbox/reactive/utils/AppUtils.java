@@ -1,8 +1,6 @@
 package com.thinkbox.reactive.utils;
 
-import com.thinkbox.reactive.dto.ProductDto;
 import com.thinkbox.reactive.dto.QuoteDto;
-import com.thinkbox.reactive.entity.Product;
 import com.thinkbox.reactive.entity.Quote;
 
 import org.springframework.beans.BeanUtils;

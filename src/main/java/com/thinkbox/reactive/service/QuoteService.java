@@ -20,6 +20,10 @@ public class QuoteService {
         return repository.findAll().map(AppUtils::entityToDto);
     }
 
+    public Flux<QuoteDto> getQuotesBySymbol(String symbol){
+        return repository.findBySymbol(symbol).map(AppUtils::entityToDto);
+    }
+    
     public Mono<QuoteDto> getQuote(String id){
         return repository.findById(id).map(AppUtils::entityToDto);
     }

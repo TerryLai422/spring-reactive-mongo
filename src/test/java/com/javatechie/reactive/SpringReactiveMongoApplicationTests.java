@@ -1,7 +1,6 @@
 package com.javatechie.reactive;
 
 import com.thinkbox.reactive.controller.QuoteController;
-import com.thinkbox.reactive.dto.ProductDto;
 import com.thinkbox.reactive.dto.QuoteDto;
 import com.thinkbox.reactive.service.QuoteService;
 
@@ -34,7 +33,7 @@ class SpringReactiveMongoApplicationTests {
 				.just(new QuoteDto("AMD-20220531", "AMD", "20220531", 102.13, 103.57, 99.55, 101.22, 99125703L));
 		when(service.saveQuote(productDtoMono)).thenReturn(productDtoMono);
 
-		webTestClient.post().uri("/quotes").body(Mono.just(productDtoMono), ProductDto.class).exchange()
+		webTestClient.post().uri("/quotes").body(Mono.just(productDtoMono), QuoteDto.class).exchange()
 				.expectStatus().isOk();// 200
 
 	}
@@ -45,11 +44,11 @@ class SpringReactiveMongoApplicationTests {
 				new QuoteDto("NVDA-20220531", "NVDA", "20220531", 187.24,190.53,181.22, 183.2, 53808925L));
 		when(service.getQuotes()).thenReturn(quoteDtoFlux);
 
-		Flux<ProductDto> responseBody = webTestClient.get().uri("/products").exchange().expectStatus().isOk()
-				.returnResult(ProductDto.class).getResponseBody();
+		Flux<QuoteDto> responseBody = webTestClient.get().uri("/products").exchange().expectStatus().isOk()
+				.returnResult(QuoteDto.class).getResponseBody();
 
-		StepVerifier.create(responseBody).expectSubscription().expectNext(new ProductDto("102", "mobile", 1, 10000))
-				.expectNext(new ProductDto("103", "TV", 1, 50000)).verifyComplete();
+		StepVerifier.create(responseBody).expectSubscription().expectNext(new QuoteDto("AMD-20220531", "AMD", "20220531", 102.13, 103.57, 99.55, 101.22, 99125703L))
+				.expectNext(new QuoteDto("NVDA-20220531", "NVDA", "20220531", 187.24,190.53,181.22, 183.2, 53808925L)).verifyComplete();
 
 	}
 
@@ -58,10 +57,10 @@ class SpringReactiveMongoApplicationTests {
 		Mono<QuoteDto> productDtoMono = Mono.just(new QuoteDto("AMD-20220531", "AMD", "20220531", 102.13, 103.57, 99.55, 101.22, 99125703L));
 		when(service.getQuote(any())).thenReturn(productDtoMono);
 
-		Flux<ProductDto> responseBody = webTestClient.get().uri("/quotes/AMD-20220531").exchange().expectStatus().isOk()
-				.returnResult(ProductDto.class).getResponseBody();
+		Flux<QuoteDto> responseBody = webTestClient.get().uri("/quotes/AMD-20220531").exchange().expectStatus().isOk()
+				.returnResult(QuoteDto.class).getResponseBody();
 
-		StepVerifier.create(responseBody).expectSubscription().expectNextMatches(p -> p.getName().equals("mobile"))
+		StepVerifier.create(responseBody).expectSubscription().expectNextMatches(p -> p.getSymbol().equals("AMD"))
 				.verifyComplete();
 	}
 
