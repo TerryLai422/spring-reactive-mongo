@@ -16,13 +16,15 @@ public class QuoteController {
     @Autowired
     private QuoteService service;
 
-    @GetMapping(produces=MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @SuppressWarnings("deprecation")
+	@GetMapping(produces=MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<QuoteDto> getQuotes(){
 //        return service.getQuotes().delayElements(Duration.ofSeconds(2));
       return service.getQuotes();
     }
 
-    @GetMapping(path="/symbol/{symbol}", produces=MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @SuppressWarnings("deprecation")
+	@GetMapping(path="/symbol/{symbol}", produces=MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<QuoteDto> getQuotesBySymbol(@PathVariable String symbol){
       return service.getQuotesBySymbol(symbol);
     }
