@@ -4,11 +4,14 @@ import com.thinkbox.reactive.dto.QuoteDto;
 import com.thinkbox.reactive.repository.QuoteRepository;
 import com.thinkbox.reactive.utils.AppUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Service
 public class QuoteService {
 
@@ -29,7 +32,7 @@ public class QuoteService {
     }
 
     public Mono<QuoteDto> saveQuote(Mono<QuoteDto> quoteDtoMono){
-        System.out.println("service method called ...");
+        log.info("service method called ...");
       return  quoteDtoMono.map(AppUtils::dtoToEntity)
                 .flatMap(repository::insert)
                 .map(AppUtils::entityToDto);

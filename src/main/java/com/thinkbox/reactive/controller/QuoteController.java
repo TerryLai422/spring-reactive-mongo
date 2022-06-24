@@ -3,12 +3,15 @@ package com.thinkbox.reactive.controller;
 import com.thinkbox.reactive.dto.QuoteDto;
 import com.thinkbox.reactive.service.QuoteService;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @RestController
 @RequestMapping("/quotes")
 public class QuoteController {
@@ -36,7 +39,7 @@ public class QuoteController {
 
     @PostMapping
     public Mono<QuoteDto> saveQuote(@RequestBody Mono<QuoteDto> quoteDtoMono){
-        System.out.println("controller method called ...");
+        log.info("controller method called ...");
         return service.saveQuote(quoteDtoMono);
     }
 
